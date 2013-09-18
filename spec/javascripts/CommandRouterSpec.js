@@ -54,4 +54,24 @@ describe("Backbone.CommandRouter",function() {
 		expect(isExecuted).toBeTruthy();
 	});
 
+	it("injects the executed command", function() {
+		var myModel = new Backbone.Model({myValue:''});
+		var myRouter = new Backbone.CommandRouter();
+		var injectedModel = null;
+		var MyCommand = Backbone.Command.extend({
+			model: 'inject',
+
+			execute: function() {
+				injectedModel = this.model;
+			}
+		});
+
+		myRouter.injector.map('model').toValue(myModel);
+		myRouter.bindCommand(myModel, "change:myValue", MyCommand);
+
+		expect(injectedModel).not.toEqual(myModel);
+		myModel.set({myValue:'newValue'}); //Trigger command execution
+		expect(injectedModel).toEqual(myModel);
+	});
+
 });

@@ -1,7 +1,18 @@
 (function() {
-	Backbone.Command = function () {};
+	Backbone.Command = function (options) {
+		this._configure(options || {});
+	};
 
 	_.extend(Backbone.Command.prototype, {
+
+		injector: null,
+
+		_configure: function(options) {
+			if(options.injector!=undefined) {
+				options.injector.injectInto(this);
+			}
+		},
+
 		execute:function () {
 
 		}

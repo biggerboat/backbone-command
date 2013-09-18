@@ -14,7 +14,7 @@ describe("Backbone.Command",function() {
 		expect(typeof commandInstance.execute).toEqual("function")
 	});
 
-	it("Can be extended", function() {
+	it("can be extended", function() {
 		var ExtendedCommand = Backbone.Command.extend({
 			execute: function() {
 				//My execution logic
@@ -26,6 +26,21 @@ describe("Backbone.Command",function() {
 		expect(extendedCommandInstance).toBeDefined();
 		expect(extendedCommandInstance.execute()).toEqual("my overridden execute method");
 		expect(commandInstance.execute()).not.toEqual("my overridden execute method");
+	});
+
+	it("can be injected", function() {
+		var ExtendedCommand = Backbone.Command.extend({
+			model: 'inject'
+		});
+
+		var model = new Backbone.Model();
+		var injectorInstance = new injector.Injector();
+
+		injectorInstance.map('model').toValue(model);
+
+		var extendedCommandInstance = new ExtendedCommand({injector:injectorInstance});
+
+		expect(extendedCommandInstance.model).toEqual(model);
 	});
 
 });
