@@ -1,0 +1,22 @@
+{
+	"name": "backbone-command",
+	"version": "0.1.0",
+	"description": "",
+	"keywords": ["backbone-command"],
+	"homepage": "https://github.com/biggerboat/backbone-command",
+
+	"authors": [
+		"Paul Tondeur"
+	],
+
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/biggerboat/backbone-command.git"
+	},
+
+	"main": "backbone-command.js",
+	"dependencies": {
+		"backbone":"latest",
+		"injector.js": "latest"
+	}
+}
