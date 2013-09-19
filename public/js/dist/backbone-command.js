@@ -8,7 +8,6 @@
 		injector: null,
 
 		_configure: function(options) {
-			console.log('Command -> _configure', options.injector);
 			if(options.injector!=undefined) {
 				options.injector.injectInto(this);
 			}
@@ -34,11 +33,12 @@
 		//but this allows users to easily overwrite the method and breaking this class.
 		_bindRoutes: function() {
 			this.injector = new injector.Injector();
+
 			_bindRoutes();
 		},
 
 		bindCommand: function(listenObject, event, command) {
-			listenObject.on(event, this._executeCommand, {command:command, injector:this.injector});
+			listenObject.on(event, this._executeCommand, {command:command, options:{injector:this.injector}});
 		},
 
 		_executeCommand: function(){
