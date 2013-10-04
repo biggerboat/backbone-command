@@ -43,4 +43,11 @@ describe("Backbone.Command",function() {
 		expect(extendedCommandInstance.model).toEqual(model);
 	});
 
+	it("automatically injects the injector", function() {
+		var injectorInstance = new injector.Injector();
+		var commandInstance = new Backbone.Command({injector:injectorInstance});
+
+		expect(commandInstance.injector).toEqual(injectorInstance);
+	});
+
 });
