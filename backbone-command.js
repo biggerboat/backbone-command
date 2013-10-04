@@ -5,7 +5,7 @@
 
 	_.extend(Backbone.Command.prototype, {
 
-		injector: null,
+		injector: 'inject',
 
 		_configure: function(options) {
 			if(options.injector!=undefined) {
