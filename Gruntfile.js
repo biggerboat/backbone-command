@@ -11,15 +11,15 @@ module.exports = function (grunt) {
 				separator: ';'
 			},
 			dist: {
-				src: ['../public/js/backbone-command/**/*.js'],
-				dest: '../<%= pkg.name %>.js'
+				src: ['public/js/backbone-command/**/*.js'],
+				dest: '<%= pkg.name %>.js'
 			}
 		},
 
 		uglify: {
 			dist: {
 				files: {
-					'../<%= pkg.name %>.min.js': '../<%= pkg.name %>.js'
+					'<%= pkg.name %>.min.js': '<%= pkg.name %>.js'
 				},
 				options: {
 					banner:'<%= banner %>'
@@ -29,13 +29,13 @@ module.exports = function (grunt) {
 
 		copy: {
 			backboneCommand: {
-				src: ['../<%= pkg.name %>.js', '../<%= pkg.name %>.min.js'],
-				dest: '../public/js/dist/*/'
+				src: ['<%= pkg.name %>.js', '<%= pkg.name %>.min.js'],
+				dest: 'public/js/dist/'
 			}
 		},
 
 		watch: {
-			files: ['../public/js/*.js'],
+			files: ['public/js/*.js'],
 			tasks: ['concat:dist','uglify:dist', 'copy:backboneCommand']
 		}
 	});
