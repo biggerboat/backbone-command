@@ -16,7 +16,9 @@
 
 	"main": "backbone-command.js",
 	"dependencies": {
-		"backbone":"latest",
-		"injector.js": "latest"
+		"jquery": "*",
+		"underscore": "*",
+		"backbone":"*",
+		"injector.js": "*"
 	}
 }
