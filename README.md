@@ -50,3 +50,6 @@ var ApplicationRouter = Backbone.CommandRouter.extend({
 });
 ```
 In this example we register ```someModel``` to the injector and map a change of ```someProperty``` to execution of ```YourCommand```
+
+## Support
+Feel free to create a [new issue](https://github.com/biggerboat/backbone-command/issues/new) for all your questions, issues or feature requests.
