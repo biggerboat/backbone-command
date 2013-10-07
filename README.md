@@ -22,3 +22,31 @@ how such logic is handled, all it knows is that it has to set the search query o
 executing the desired logic. This might mean a backend call and changing the loading property to true on a model for example.
 Commands are essentially the glue of your application. Your models and views should be completely agnostic,
 but the command can bring all of these together. A command has access to the injector and therefor usually has access to everything it needs.
+
+## Usage
+A typical command looks as follows:
+```JavaScript
+var YourCommand = Backbone.Command.extend({
+	someModel: 'inject',
+
+	execute: function() {
+		//Your logic...
+	}
+});
+```
+
+In the current setup the router is (ab)used as the central place that connects events to the execution of commands, but also takes
+care registering injector rules. An ```injector``` is automatically instantiated for you when you extend the ```Backbone.CommandRouter```
+
+A very basic extended CommandRouter would look like this
+```JavaScript
+var ApplicationRouter = Backbone.CommandRouter.extend({
+	initialize: function() {
+		var someModel = new Backbone.Model();
+		this.injector.map('someModel').toValue(someModel);
+
+		this.bindCommand(someModel, "change:someProperty", YourCommand);
+	}
+});
+```
+In this example we register ```someModel``` to the injector and map a change of ```someProperty``` to execution of ```YourCommand```
