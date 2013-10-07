@@ -38,7 +38,7 @@ var YourCommand = Backbone.Command.extend({
 In the current setup the router is (ab)used as the central place that connects events to the execution of commands, but also takes
 care registering injector rules. An ```injector``` is automatically instantiated for you when you extend the ```Backbone.CommandRouter```
 
-A very basic extended CommandRouter would look like this
+A very basic extended CommandRouter would look like this:
 ```JavaScript
 var ApplicationRouter = Backbone.CommandRouter.extend({
 	initialize: function() {
@@ -49,7 +49,7 @@ var ApplicationRouter = Backbone.CommandRouter.extend({
 	}
 });
 ```
-In this example we register ```someModel``` to the injector and map a change of ```someProperty``` to execution of ```YourCommand```
+In this example we register ```someModel``` to the injector and map a change of ```someProperty``` to the execution of ```YourCommand```
 
 ## Support
 Feel free to create a [new issue](https://github.com/biggerboat/backbone-command/issues/new) for all your questions, issues or feature requests.
