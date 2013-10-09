@@ -1,4 +1,4 @@
-# backbone-command [![Build Status](https://travis-ci.org/biggerboat/backbone-command.png)](https://travis-ci.org/biggerboat/backbone-command)
+# backbone-command [![Build Status](https://travis-ci.org/inlet/backbone-command.png)](https://travis-ci.org/inlet/backbone-command)
 
 Execution of [commands](http://en.wikipedia.org/wiki/Command_pattern) upon event triggers.
 This is build for usage with [Backbone](https://github.com/jashkenas/backbone) and relies on [injector.js](https://github.com/biggerboat/injector.js)
