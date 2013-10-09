@@ -92,7 +92,7 @@ module.exports = function (grunt) {
     grunt.registerTask('release:major', ['bump-only:major', 'release']);
 
     // travis!
-    grunt.registerTask('travis', [
+    grunt.registerTask('travis', 'Testing specs on Travis-CI', [
 //        'jshint', TODO maybe implement jshint for strict coding?
         'jasmine'
     ]); 
