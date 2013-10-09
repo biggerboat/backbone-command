@@ -95,5 +95,5 @@ module.exports = function (grunt) {
     grunt.registerTask('travis', [
 //        'jshint', TODO maybe implement jshint for strict coding?
         'jasmine'
-    ]);
+    ]); 
 };
