@@ -74,4 +74,25 @@ describe("Backbone.CommandRouter",function() {
 		expect(injectedModel).toEqual(myModel);
 	});
 
+	it("Passes the event arguments on to the execute method of the command", function() {
+		var myModel = new Backbone.Model({myValue:''});
+		var myRouter = new Backbone.CommandRouter();
+		var calledWithArguments = null;
+		var calledWithModel = null;
+		var MyCommand = Backbone.Command.extend({
+
+			execute: function(model) {
+				calledWithArguments = arguments;
+				calledWithModel = model;
+			}
+		});
+
+		myRouter.bindCommand(myModel, "change:myValue", MyCommand);
+
+		expect(calledWithArguments).toBeNull();
+		myModel.set({myValue:'newValue'}); //Trigger command execution
+		expect(calledWithArguments).not.toBeNull();
+		expect(calledWithModel).toBe(myModel);
+	});
+
 });
