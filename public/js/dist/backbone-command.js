@@ -43,7 +43,7 @@
 
 		_executeCommand: function(){
 			var theCommand = new this.command(this.options);
-			theCommand.execute();
+			theCommand.execute.apply(theCommand, arguments);
 			theCommand = null;
 		}
 	});
