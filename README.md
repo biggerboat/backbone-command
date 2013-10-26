@@ -51,5 +51,8 @@ var ApplicationRouter = Backbone.CommandRouter.extend({
 ```
 In this example we register ```someModel``` to the injector and map a change of ```someProperty``` to the execution of ```YourCommand```
 
+### Example implementation
+Please refer to [Navigator-Injector-Backbone-Command-TodoMVC example](https://github.com/BiggerBoat/nibc-todomvc) for details of how this library can be used.
+
 ## Support
 Feel free to create a [new issue](https://github.com/biggerboat/backbone-command/issues/new) for all your questions, issues or feature requests.
