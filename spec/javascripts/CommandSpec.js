@@ -1,3 +1,6 @@
+var Backbone = require("backbone");
+require("../../backbone-command.js");
+
 describe("Backbone.Command",function() {
 
 	it("is present", function() {

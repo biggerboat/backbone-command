@@ -1,3 +1,6 @@
+var Backbone = require("backbone");
+require("../../backbone-command.js");
+
 describe("Backbone.CommandRouter",function() {
 
 	beforeEach(function() {
