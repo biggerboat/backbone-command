@@ -6,6 +6,7 @@
 		"email": "paul@paultondeur.nl",
 		"url": "http://paultondeur.com"
 	},
+    "main": "backbone-command.js",
 	"description": "Small Backbone extension for command execution on model changes",
 	"repository": {
 		"type": "git",
@@ -20,8 +21,5 @@
 	},
 	"engines": {
 		"node": "0.8.x"
-	},
-	"devDependencies": {
-		"grunt-contrib-concat": "~0.3.0"
 	}
 }
