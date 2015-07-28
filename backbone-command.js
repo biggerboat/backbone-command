@@ -1,51 +1,66 @@
-(function() {
-	Backbone.Command = function (options) {
-		this._configure(options || {});
-	};
+(function(root, factory) {
 
-	_.extend(Backbone.Command.prototype, {
+    // Start with AMD.
+    if (typeof define === 'function' && define.amd) {
+        define(['underscore', 'backbone'], function(_, Backbone) {
+        factory( _, Backbone);
+    });
 
-		injector: 'inject',
+    // Next for Node.js or CommonJS.
+    } else if (typeof exports !== 'undefined' && typeof require === 'function') {
+        var _ = require('underscore'),
+            Backbone = require('backbone');
+        factory(_, Backbone);
 
-		_configure: function(options) {
-			if(options.injector!=undefined) {
-				options.injector.injectInto(this);
-			}
-		},
+    // Finally, as a browser global.
+    } else {
+        factory(root._, root.Backbone);
+    }
+}(this, function factory(_, Backbone) {
+    Backbone.Command = function (options) {
+        this._configure(options || {});
+    };
 
-		execute:function () {
+    _.extend(Backbone.Command.prototype, {
 
-		}
-	});
+        injector: 'inject',
 
-	//Like all Backbone classes, make use of the same extend method
-	Backbone.Command.extend = Backbone.Router.extend;
-})();;(function() {
+        _configure: function(options) {
+            if(options.injector !== undefined) {
+                options.injector.injectInto(this);
+            }
+        },
 
-	//Yaiks! Our only way into the router is the _bindRoutes. Unfortunately there is no _configure method such as we have within a View
-	var _bindRoutes = Backbone.Router.prototype._bindRoutes;
+        execute:function () {
 
-	Backbone.CommandRouter = Backbone.Router.extend({
+        }
+    });
 
-		injector: null,
+    //Like all Backbone classes, make use of the same extend method
+    Backbone.Command.extend = Backbone.Router.extend;
+    //Yaiks! Our only way into the router is the _bindRoutes. Unfortunately there is no _configure method such as we have within a View
+    var _bindRoutes = Backbone.Router.prototype._bindRoutes;
 
-		//We abuse this as our constructor. We want to initialize the injector. The initialize method could be used for this,
-		//but this allows users to easily overwrite the method and breaking this class.
-		_bindRoutes: function() {
-			this.injector = new injector.Injector();
+    Backbone.CommandRouter = Backbone.Router.extend({
 
-			_bindRoutes();
-		},
+        injector: null,
 
-		bindCommand: function(listenObject, event, command) {
-			listenObject.on(event, this._executeCommand, {command:command, options:{injector:this.injector}});
-		},
+        //We abuse this as our constructor. We want to initialize the injector. The initialize method could be used for this,
+        //but this allows users to easily overwrite the method and breaking this class.
+        _bindRoutes: function() {
+            this.injector = new injector.Injector();
 
-		_executeCommand: function(){
-			var theCommand = new this.command(this.options);
-			theCommand.execute.apply(theCommand, arguments);
-			theCommand = null;
-		}
-	});
+            _bindRoutes();
+        },
 
-})();
+        bindCommand: function(listenObject, event, command) {
+            listenObject.on(event, this._executeCommand, {command:command, options:{injector:this.injector}});
+        },
+
+        _executeCommand: function(){
+            var theCommand = new this.command(this.options);
+            theCommand.execute.apply(theCommand, arguments);
+            theCommand = null;
+        }
+    });
+}));
